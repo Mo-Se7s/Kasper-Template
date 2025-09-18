@@ -11,11 +11,15 @@ if (toggleMenu && navLinks) {
     );
   });
   // Close nav when resizing window more than 768px
+  let resizeTimer;
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 768 && navLinks.classList.contains("open")) {
-      navLinks.classList.remove("open");
-      toggleMenu.setAttribute("aria-expanded", "false");
-    }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth >= 768 && navLinks.classList.contains("open")) {
+        navLinks.classList.remove("open");
+        toggleMenu.setAttribute("aria-expanded", "false");
+      }
+    }, 200);
   });
 }
 // close nav when link is clicked
@@ -36,18 +40,9 @@ links.forEach((link) => {
     e.target.style.setProperty("--dir", x < mid ? "left" : "right");
   });
 });
-
-
-
-
-
-
-
-
-let arr1 = [1, 2, 3, 4, 5];
-let arr2 = [];
-for (let i = 0; i < arr1.length; i++) {
-  if (isNaN(arr1[i] + arr1[i + 1])) continue;
-  arr2.push(arr1[i] + arr1[i + 1]);
-}
-console.log(arr2);
+links.forEach((link) => {
+  link.onclick = function () {
+    links.forEach((link) => link.classList.remove("active"));
+    this.classList.add("active");
+  };
+});

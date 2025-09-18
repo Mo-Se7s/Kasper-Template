@@ -26,7 +26,6 @@ a {
 }
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: black;
 }
 /* End Global Rules */
 /* Start Header */
@@ -72,7 +71,7 @@ header .links {
 }
 /* Toggle menus Bars */
 header .links.open {
-  background-color: #19c8fa;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   position: absolute;
   top: 100%;
@@ -84,7 +83,7 @@ header .links.open {
 header nav .links a {
   color: #fff;
   display: block;
-  padding: 40px 10px;
+  padding: 40px 15px;
   font-weight: 600;
   font-size: 13px;
   position: relative;
@@ -94,15 +93,35 @@ header nav .links a {
   -ms-transition: all var(--transitionDuration);
   -o-transition: all var(--transitionDuration);
 }
-
-header nav .links a::after {
+header nav .links .active::after {
   content: "";
   position: absolute;
-  bottom: 4px;
+  top: calc(100%);
   left: 0;
   width: 100%;
   height: 1px;
   background: #fff;
+  background-color: var(--mainColor);
+  transform-origin: var(--dir, left);
+  transform: scaleX(1);
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transition: transform 0.3s;
+  -webkit-transition: transform 0.3s;
+  -moz-transition: transform 0.3s;
+  -ms-transition: transform 0.3s;
+  -o-transition: transform 0.3s;
+}
+header nav .links a::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--mainColor);
   transform: scaleX(0);
   transition: transform 0.3s;
   -webkit-transform: scaleX(0);
@@ -120,15 +139,118 @@ header nav .links a:hover::after {
   transform: scaleX(1);
 }
 
-header nav .links a:hover {
-  transform: translateX(30px) scale(1.1);
-  -webkit-transform: translateX(30px) scale(1.1);
-  -moz-transform: translateX(30px) scale(1.1);
-  -ms-transform: translateX(30px) scale(1.1);
-  -o-transform: translateX(30px) scale(1.1);
+/* End Header */
+/* Start Landing */
+.landing {
+  height: 100vh;
+  background: url(../images/landing1.jpg) no-repeat center center/cover;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+/* background layer */
+
+/* overlay color */
+.landing::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
+.landing .text {
+  width: 100%;
+  padding: clamp(20px, 5vw, 50px);
+  background-color: var(--transparentColor);
+  display: flex;
+  justify-content: center;
+}
+.landing .text .content {
+  text-align: left;
+  max-width: 500px;
 }
 
-/* End Header */
+.landing .text h1 {
+  text-transform: uppercase;
+  font-size: clamp(17px, 5vw, 30px);
+  font-weight: normal;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.landing .text p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.landing .holder .arrows {
+  height: 60px;
+  position: absolute;
+  bottom: calc(50% - 60px);
+  left: 50%;
+  display: none;
+  width: 100%;
+  justify-content: space-between;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  padding: 0% 20px;
+}
+.landing .arrows i {
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  transition: all var(--transitionDuration);
+  -webkit-transition: all var(--transitionDuration);
+  -moz-transition: all var(--transitionDuration);
+  -ms-transition: all var(--transitionDuration);
+  -o-transition: all var(--transitionDuration);
+}
+.landing .arrows i:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+.landing .holder .circles {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+.landing .holder .circles li {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transitionDuration);
+  -webkit-transition: all var(--transitionDuration);
+  -moz-transition: all var(--transitionDuration);
+  -ms-transition: all var(--transitionDuration);
+  -o-transition: all var(--transitionDuration);
+}
+
+/* End Landing */
 
 /* Start Media Quires */
 @media (min-width: 768px) {
@@ -138,19 +260,16 @@ header nav .links a:hover {
   header .toggle-menu {
     display: none;
   }
-  header nav .links a::after {
-    background: var(--mainColor);
-    bottom: 2px;
-  }
-  header nav .links a:hover {
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-  }
 
   header .container nav .links {
+    display: flex;
+  }
+  .landing .text {
+    width: 60%;
+    max-width: 865px;
+    justify-content: flex-end;
+  }
+  .landing .holder .arrows {
     display: flex;
   }
 }
