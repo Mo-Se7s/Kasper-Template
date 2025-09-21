@@ -48,27 +48,3 @@ links.forEach((link) => {
     this.classList.add("active");
   };
 });
-
-function alphabetPosition(text) {
-  let alphbet = "abcdefghijklmnopqrstuvwxyz";
-  return text
-    .toLowerCase()
-    .split("")
-    .map((char) => alphbet.indexOf(char) + 1)
-    .filter((num) => num > 0)
-    .join(" ");
-}
-
-// console.log(alphabetPosition("The sunset sets at twelve o' clock."));
-let a = "acdeghilnorstu"
-
-function longest(s1, s2) {
-  let sorted = [];
-  (s1+s2).split("").filter((char) => {
-      if (!sorted.includes(char)) {
-        sorted.push(char);
-      }
-    });
-  return sorted.sort().join("");
-}
-console.log(longest(a, a));
