@@ -1,7 +1,7 @@
 /* Start Variables */
 :root {
   --mainColor: #19c8fa;
-  --transparentColor: rgba(15, 116, 143, 0.8);
+  --transparentColor: #0f748f;
   --transitionDuration: 0.3s;
   --mainPadding: 100px;
 }
@@ -240,9 +240,9 @@ header nav .links a:hover::after {
 
 .landing .text h1 {
   text-transform: uppercase;
-  font-size: clamp(17px, 5vw, 30px);
+  font-size: clamp(17px, 3vw, 30px);
   font-weight: normal;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   line-height: 1.6;
 }
 .landing .text p {
@@ -329,8 +329,8 @@ header nav .links a:hover::after {
   font-size: 35px;
   color: #333;
   margin: 0 0 30px 0;
-   -webkit-text-stroke: 2px black;   /* border around the text/icon */
-  -webkit-text-fill-color: white;     /*fill icon with white color*/
+  -webkit-text-stroke: 2px black; /* border around the text/icon */
+  -webkit-text-fill-color: white; /*fill icon with white color*/
 }
 .services .services_content .serv .serv_info h3 {
   color: var(--mainColor);
@@ -348,8 +348,76 @@ header nav .links a:hover::after {
 
 /* End Services */
 /* ----------------------------------------------------------------- */
-/* Start Media Quires */
+/* Start Design */
+.design {
+  background-color: #1f2021;
+  padding: var(--mainPadding) 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  min-height: 500px;
+}
 
+.design .design_text {
+  background: var(--transparentColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  z-index: 3;
+}
+
+.design .design_text h2 {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-weight: 400;
+  font-size: clamp(22px, 7vw, 24px);
+}
+
+.design .design_text li {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.design .design_text li i {
+  position: relative;
+  top: 1px;
+}
+
+.design .design_text li h3 {
+  padding-left: 25px;
+}
+
+.design .phone_img {
+  position: relative;
+  height: 350px;
+}
+.design .phone_img .img_box {
+  display: flex;
+  position: absolute;
+  top: 1px;
+  left: 36%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+.design .phone_img img:first-child {
+  z-index: 1;
+  position: absolute;
+  right: -43%;
+  bottom: 0;
+}
+.design .phone_img img:last-child {
+  z-index: 2;
+}
+
+/* End Design */
+/* ----------------------------------------------------------------- */
+/* Start Media Quires */
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -376,6 +444,12 @@ header nav .links a:hover::after {
   }
   .services .services_content .serv i {
     margin-right: clamp(25px, 7vw, 50px);
+  }
+  .design {
+    grid-template-columns: 1fr minmax(400px, 0.7fr);
+  }
+  .design .phone_img {
+    height: 300px;
   }
 }
 @media (min-width: 1024px) {
