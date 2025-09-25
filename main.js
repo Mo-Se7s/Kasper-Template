@@ -48,3 +48,30 @@ links.forEach((link) => {
     this.classList.add("active");
   };
 });
+
+// nav bar for my work
+const navButtons = document.querySelectorAll(
+  ".portfolio .nav_bar ul li button"
+);
+const portfolioImgs = document.querySelectorAll(".portfolio .my_work .work_box");
+
+navButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    navButtons.forEach((b) => b.classList.remove("active_button"));
+    btn.classList.add("active_button");
+
+    const filter = btn.textContent.toLowerCase();
+
+    portfolioImgs.forEach((img, i) => {
+      const category = img.getAttribute("data-category");
+
+      if (filter === "all" || category.includes(filter)) {
+        img.classList.add("fadeIn");
+        img.classList.remove("fadeOut");
+      } else {
+        img.classList.remove("fadeIn");
+        img.classList.add("fadeOut");
+      }
+    });
+  });
+});
